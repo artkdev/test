@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- 14
+install:
+  - yarn
+cache:
+  directories:
+    - node_modules
+before_script:
+  - yarn install
+  - npm install -g codecov
+script:
+- CI=false  yarn build
+- yarn test --coverage
+after_success:
+- codecov --token='a15077d3-f225-4d61-8aeb-25ff90dd3fb9'
+
